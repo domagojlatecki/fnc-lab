@@ -10,7 +10,7 @@ object Debug {
 
     def print(domain: Domain, heading: String): Unit = {
         this.printHeadingAndDomainElements(heading, domain) {
-            e => println(s"Domain element: ${e}")
+            e => println(s"Domain element: $e")
         }
 
         println(s"Cardinality: ${domain.cardinality}")
