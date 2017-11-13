@@ -52,4 +52,24 @@ object StandardFuzzySets {
             }
         }
     }
+
+    def piFunction(a: Int, b: Int, c: Int, d: Int): Int => Double = {
+        this.checkRange(a, b)
+        this.checkRange(b, c)
+        this.checkRange(c, d)
+
+        x => {
+            if (x < a) {
+                0.0
+            } else if (x >= a && x < b) {
+                (x - a).toDouble / (b - a)
+            } else if (x >= b && x < c) {
+                1.0
+            } else if (x >= c && x < d) {
+                (d - x).toDouble / (d - c)
+            } else {
+                0.0
+            }
+        }
+    }
 }

@@ -2,17 +2,8 @@ package at.doml.fnc.lab1.set
 
 object Operations {
 
-    def unaryOperation(set: FuzzySet, operation: Double => Double): FuzzySet = {
-        val result = new MutableFuzzySet(set.domain)
-
-        for (i <- 0 until set.domain.cardinality) {
-            val element = set.domain.elementFor(i)
-
-            result.set(element, operation(set.getValueAt(element)))
-        }
-
-        result
-    }
+    def unaryOperation(set: FuzzySet, operation: Double => Double): FuzzySet =
+        new CalculatedFuzzySet(set.domain, i => operation(set.getValueAt(set.domain.elementFor(i))))
 
     def binaryOperation(first: FuzzySet, second: FuzzySet, operation: (Double, Double) => Double): FuzzySet = {
         if (first.domain.cardinality != second.domain.cardinality
@@ -20,15 +11,10 @@ object Operations {
             throw new IllegalArgumentException("Unable to perform binary operation on given sets")
         }
 
-        val result = new MutableFuzzySet(first.domain)
-
-        for (i <- 0 until first.domain.cardinality) {
+        new CalculatedFuzzySet(first.domain, i => {
             val element = first.domain.elementFor(i)
-
-            result.set(element, operation(first.getValueAt(element), second.getValueAt(element)))
-        }
-
-        result
+            operation(first.getValueAt(element), second.getValueAt(element))
+        })
     }
 
     val zadehNot: Double => Double = a => 1.0 - a
