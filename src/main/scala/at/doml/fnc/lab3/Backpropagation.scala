@@ -46,7 +46,7 @@ object Backpropagation {
             iteration += 1
             currentError = calculateError(neuralNetwork, trainingSamples, numSamples)
 
-            println(s"Interation $iteration error: $currentError")
+            println(s"Iteration $iteration error: $currentError")
         }
     }
 

@@ -19,16 +19,15 @@ object Preprocessor {
 
     def apply(args: Array[String]): Unit = {
         var file = ""
-        var params: Params = (0, 0, 0.0, "", 0, 0.0)
-
         if (args.length == 0) {
             printUsage()
         } else if (args.length == 1) {
             file = args(0)
         } else {
             file = args.last
-            params = extractParams(args.dropRight(1))
         }
+
+        val params = extractParams(args.dropRight(1))
 
         this.numRepresentativePoints = params._1
 
@@ -121,10 +120,10 @@ object Preprocessor {
         val numRepresentativePointsSetter: Setter = a => numRepresentativePoints = a.toInt
 
         var maxIterations = 10000
-        var maxIterationsSetter: Setter = a => maxIterations = a.toInt
+        val maxIterationsSetter: Setter = a => maxIterations = a.toInt
 
         var targetError = 10e-7
-        var targetErrorSetter: Setter = a => targetError = a.toDouble
+        val targetErrorSetter: Setter = a => targetError = a.toDouble
 
         var neuralNetworkLayout = "10x20x5"
         val neuralNetworkLayoutSetter: Setter = a => neuralNetworkLayout = a
