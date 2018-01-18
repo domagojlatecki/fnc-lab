@@ -45,7 +45,7 @@ class GeneticAlgorithm[T](private val populationSize: Int = 100,
 
     private def printIfVerbose(prefix: String)(implicit best: Chromosome[T]): Unit = {
         if (this.verbose) {
-            println(s"$prefix best: ${best.underlying}, fitness: ${best.fitness}")
+            println(s"$prefix best: ${best.underlying}, error: ${best.fitness}")
         }
     }
 }

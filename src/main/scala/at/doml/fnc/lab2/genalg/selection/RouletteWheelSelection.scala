@@ -10,13 +10,12 @@ object RouletteWheelSelection extends SelectionOperator {
         val fitnessValues = population.map(max - _.fitness)
         val sum = fitnessValues.sum
 
-        if (sum <= 10e-7) {
+        if (sum.abs <= 10e-7) {
             val shuffled = Random.shuffle(population)
             return (shuffled.take(2), shuffled.drop(2))
         }
 
         val chances = fitnessValues.map(_ / sum)
-
         val firstIndex = selectIndex(chances)
         val secondIndex = selectIndex(chances)
 

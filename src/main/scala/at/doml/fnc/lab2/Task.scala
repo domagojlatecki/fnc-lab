@@ -70,7 +70,7 @@ object Task {
         println("    -t <decimal>      Fitness threshold, default: 0.0")
         println("    -c <decimal>      Mutation chance, default: 0.05")
         println("    -m <decimal>      Gaussian mean for mutation, default: 0.0")
-        println("    -d <decimal>      Gaussian deviation for mutation, default: 0.0")
+        println("    -d <decimal>      Gaussian deviation for mutation, default: 1.0")
         println("    --verbose         Print best chromosome in every iteration of the algorithm")
         println("    --elitism         Use elitism, only valid for generational algorithm")
         println("    --generational    Use generational algorithm, on by default")
